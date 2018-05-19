@@ -6,7 +6,11 @@ var $countryinput = document.querySelector("#country");
 var $shapeinput = document.querySelector("#shape");
 var $searchBtn = document.querySelector("#search");
 $searchBtn.addEventListener("click", clicked);
-
+$(document).ready(function() {
+  $('#table').DataTable( {
+      "pagingType": "full_numbers"
+  } );
+} );
 var filtered = partDataSet;
 renderTable();
 
