@@ -5,58 +5,54 @@ var $stateinput = document.querySelector("#state");
 var $countryinput = document.querySelector("#country");
 var $shapeinput = document.querySelector("#shape");
 var $searchBtn = document.querySelector("#search");
-$searchBtn.addEventListener("click", clicked);
 $(document).ready(function() {
   $('#table').DataTable( {
       "pagingType": "full_numbers"
   } );
 } );
-var filtered = partDataSet;
+$searchBtn.addEventListener("click", clicked);
+var f = partDataSet;
 renderTable();
 
 function clicked() {
-  filtered = partDataSet;
+
+  f = partDataSet;
   renderTable();
   if ($datetimeinput.value.trim()){ //DATETIME
-    var filtervalue = $datetimeinput.value.trim();
-    filtered = filtered.filter(function(entry) {
-      return entry.datetime.trim() == filtervalue;
+    f = f.filter(function(entry) {
+      return entry.datetime.trim() == $datetimeinput.value.trim();
     });
   renderTable();
   }
  if ($cityinput.value.trim()){ //CITY
-   var filtervalue = $cityinput.value.trim();
-   filtered = filtered.filter(function(entry) {
-     return entry.city.trim() == filtervalue;
+   f = f.filter(function(entry) {
+     return entry.city.trim() == $cityinput.value.trim();
     });
   renderTable();
   }
   if ($stateinput.value.trim()){ //STATE
-    var filtervalue = $stateinput.value.trim();
-    filtered = filtered.filter(function(entry) {
-      return entry.state.trim() == filtervalue;
+    f = f.filter(function(entry) {
+      return entry.state.trim() == $stateinput.value.trim();
     });
   renderTable();
   }
   if ($countryinput.value.trim()){ //COUNTRY
-    var filtervalue = $countryinput.value.trim();
-    filtered = filtered.filter(function(entry) {
-      return entry.country.trim() == filtervalue;
+    f = f.filter(function(entry) {
+      return entry.country.trim() == $countryinput.value.trim();
     });
   renderTable();
   }
   if ($shapeinput.value.trim()){ //SHAPE
-    var filtervalue = $shapeinput.value.trim();
-    filtered = filtered.filter(function(entry) {
-      return entry.shape.trim() == filtervalue;
+    f = f.filter(function(entry) {
+      return entry.shape.trim() == $shapeinput.value.trim();
     });
   renderTable();
   }
 }
 function renderTable() {
   $tbody.innerHTML = "";
-  for (var i = 0; i < filtered.length; i++) {
-    var entry = filtered[i];
+  for (var i = 0; i < f.length; i++) {
+    var entry = f[i];
     var fields = Object.keys(entry);
     var $row = $tbody.insertRow(i);
     for (var j = 0; j < fields.length; j++) {
